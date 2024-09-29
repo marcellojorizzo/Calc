@@ -234,7 +234,16 @@ void MainWindow::on_pushButton_clicked()
     controller -> setAnzahlWerkstuecke(ui-> lineNumberOfPieces->text().toDouble());
 
     double result = controller->calculateTotal();
-        // give out result
+    // give out result
     ui ->lineDisplay-> setText("Gesamt Preis: " + Utillity::formNum(result) + " €");
+
+    // set values in felds
+    ui -> linePricePerRoll->setText(Utillity::formNum(model.getPreisProRolle()));
+    ui -> lineWeightPerRoll-> setText(Utillity::formNum(model.getGewichtProRolle()));
+    ui -> lineWeightPerPiece -> setText(Utillity::formNum(model.getGewichtProWerkstueck()));
+    ui -> lineFactor -> setText(Utillity::formNum(model.getFaktor()));
+    ui -> lineMargin ->setText(Utillity::formNum(model.getGewinnzuschlag()));
+    ui -> lineTaxRate ->setText(Utillity::formNum(model.getMwSt()));
+    ui -> lineNumberOfPieces ->setText(Utillity::formNum(model.getAnzahlWerkstuecke()));
 }
 
