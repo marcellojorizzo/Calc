@@ -16,7 +16,8 @@ Eingabe der Werte: Geben Sie die erforderlichen Parameter in die vorgesehenen Fe
 Berechnung: Klicken Sie auf die Berechnungstaste, um die Gesamtkosten zu ermitteln.
 Anzeige der Ergebnisse: Die berechneten Kosten werden direkt in der Benutzeroberfläche angezeigt.
 Systemanforderungen
-Betriebssystem: Windows, macOS oder Linux mit Unterstützung für Qt.
-Entwicklungsumgebung: Qt Creator oder eine andere geeignete IDE für C++ und Qt.
+
 Mitwirken
 Jeder kann diesen Code verwenden, verbessern und zur Weiterentwicklung der Anwendung beitragen. Bei Fragen oder Anregungen zur Verbesserung der Anwendung können Sie gerne Feedback geben oder Pull-Requests einreichen.
+
+Entwicklungsumgebung: Qt Creator oder eine andere geeignete IDE für C++ und Qt.
