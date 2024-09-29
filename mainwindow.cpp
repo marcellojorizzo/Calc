@@ -3,6 +3,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QString>
+#include <stdexcept>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,61 +35,193 @@ MainWindow::~MainWindow()
     delete controller;
 }
 
+//price per roll
 void MainWindow::on_setButton_1_clicked()
 {
-   controller->setPreisProRolle(ui->linePricePerRoll->text().toDouble());
-    double result= controller -> getPreisProRolle();
-    ui ->lineDisplay-> setText("Preis pro Filament-Rolle: " + Utillity::formNum(result)+ " €");
+    try
+    {
+        bool ok;
+        double value = ui-> linePricePerRoll ->text().toDouble(&ok);
+        if (!ok)
+        {
+        throw invalid_argument("not a number!");
+        }
+
+       controller->setPreisProRolle(value);
+        double result= controller -> getPreisProRolle();
+       ui ->lineDisplay-> setText("Preis pro Filament-Rolle: " + Utillity::formNum(result)+ " €");
+    }
+    catch(const invalid_argument &e)
+    {
+    ui ->lineDisplay-> setText(e.what());
+    ui -> linePricePerRoll ->clear();
+    }
+    catch(...)
+    {
+    ui ->lineDisplay-> setText("an unknown error has occurred!");
+    }
 }
 
-
+// weight per roll
 void MainWindow::on_setButton_2_clicked()
 {
-    controller -> setGewichtProRolle(ui->lineWeightPerRoll->text().toDouble());
-    double result= controller -> getGewichtProRolle();
-    ui ->lineDisplay-> setText("Gewicht pro Filament-Rolle: " + Utillity::formNum(result)+ " g");
+    try
+    {
+        bool ok;
+        double value = ui->lineWeightPerRoll ->text().toDouble(&ok);
+        if (!ok)
+        {
+            throw invalid_argument("not a number!");
+        }
+
+        controller->setGewichtProRolle(value);
+        double result= controller -> getGewichtProRolle();
+        ui ->lineDisplay-> setText("Gewicht pro Filament-Rolle: " + Utillity::formNum(result)+ " €");
+    }
+    catch(const invalid_argument &e)
+    {
+        ui ->lineDisplay-> setText(e.what());
+        ui -> lineWeightPerRoll ->clear();
+    }
+    catch(...)
+    {
+        ui ->lineDisplay-> setText("an unknown error has occurred!");
+    }
 }
 
-
+// weight per piece
 void MainWindow::on_setButton_3_clicked()
 {
-    controller-> setGewichtWerkstueck(ui->lineWeightPerPiece->text().toDouble());
+    try
+    {
+    bool ok;
+    double value = ui -> lineWeightPerPiece->text().toDouble(&ok);
+        if (!ok)
+        {
+            throw invalid_argument ("not a number!");
+        }
+    controller-> setGewichtWerkstueck(value);
     double result= controller -> getGewichtProWerkstueck();
     ui ->lineDisplay-> setText("Gewicht pro Werkstück: " + Utillity::formNum(result)+ " g");
+    }
+    catch (const invalid_argument &e)
+    {
+        ui ->lineDisplay->setText(e.what());
+        ui->lineWeightPerPiece->clear();
+    }
+    catch(...)
+    {
+        ui ->lineDisplay-> setText("an unknown error has occurred!");
+    }
 }
 
-
+// factor
 void MainWindow::on_setButton_4_clicked()
 {
-    controller -> setFaktor(ui->lineFactor->text().toDouble());
+    try
+    {
+        bool ok;
+        double value =  ui-> lineFactor-> text().toDouble(&ok);
+        if(!ok)
+        {
+            throw invalid_argument("not a number!");
+        }
+    controller -> setFaktor(value);
     double result= controller -> getFaktor();
     ui ->lineDisplay-> setText("Der Faktor wurde auf: " + Utillity::formNum(result)+ " gesetzt!");
+    }
+    catch (const invalid_argument &e)
+    {
+        ui ->lineDisplay->setText(e.what());
+        ui->lineFactor->clear();
+    }
+    catch(...){
+        ui ->lineDisplay-> setText("an unknown error has occurred!");
+    }
 }
 
-
+// margin
 void MainWindow::on_setButton_5_clicked()
 {
-    controller -> setGewinnzuschlag(ui->lineMargin->text().toDouble());
-    double result= controller -> getGewinnzuschlag();
-    ui ->lineDisplay-> setText("Der Gewinnzuschlag beträgt: " + Utillity::formNum(result)+ " %");
+    try
+    {
+        bool ok;
+        double value = ui->lineMargin->text().toDouble(&ok);
+
+        if(!ok)
+        {
+            throw invalid_argument("not a number!");
+
+        }
+        controller -> setGewinnzuschlag(value);
+        double result = controller ->getGewinnzuschlag();
+          ui ->lineDisplay-> setText("Der Gewinnzuschlag beträgt: " + Utillity::formNum(result)+ " %");
+    }
+    catch (const invalid_argument &e)
+    {
+        ui->lineDisplay->setText(e.what());
+        ui ->lineMargin->clear();
+
+    }
+    catch (...)
+    {
+        ui->lineDisplay->setText("an unknown error has occurred!");
+    }
 }
 
-
+// tax rate
 void MainWindow::on_setButton_6_clicked()
 {
-    controller -> setMwSt(ui-> lineTaxRate->text().toDouble());
-    double result= controller -> getMwSt();
-    ui ->lineDisplay-> setText("Der MwSt-Satz beträgt: " + Utillity::formNum(result)+ " %");
+    try
+    {
+        bool ok;
+        double value = ui ->lineTaxRate->text().toDouble(&ok);
+        if(!ok)
+        {
+            throw invalid_argument("not a number!");
+        }
+        controller -> setMwSt(value);
+        double result= controller -> getMwSt();
+        ui ->lineDisplay-> setText("Der MwSt-Satz beträgt: " + Utillity::formNum(result)+ " %");
+    }
+    catch (const invalid_argument &e)
+    {
+        ui->lineDisplay->setText(e.what());
+        ui->lineTaxRate->clear();
+    }
+    catch(...)
+    {
+        ui->lineDisplay->setText("an unknown error has occurred!");
+    }
 }
 
-
+// number of pieces
 void MainWindow::on_setButton_7_clicked()
 {
-    controller -> setAnzahlWerkstuecke(ui-> lineNumberOfPieces->text().toDouble());
-    double result= controller -> getAnzahlWerkstuecke();
-    ui ->lineDisplay-> setText("Es werden die Kosten für: " + Utillity::formNum(result)+ " Werkstücke berechnet");
+    try
+    {
+        bool ok;
+        double value = ui-> lineNumberOfPieces->text().toDouble(&ok);
+        if(!ok)
+        {
+            throw invalid_argument("not a numer !");
+        }
+        controller -> setAnzahlWerkstuecke(value);
+        double result= controller -> getAnzahlWerkstuecke();
+        ui ->lineDisplay-> setText("Es werden die Kosten für: " + Utillity::formNum(result)+ " Werkstücke berechnet");
+    }
+    catch (const invalid_argument &e)
+    {
+        ui->lineDisplay->setText(e.what());
+        ui ->lineNumberOfPieces->clear();
+    }
+    catch(...)
+    {
+        ui ->lineDisplay->setText("an unknown error has occurred!");
+    }
 }
 
+//calculate
 void MainWindow::on_pushButton_clicked()
 {
     // read values from fields
@@ -97,9 +232,9 @@ void MainWindow::on_pushButton_clicked()
      controller -> setGewinnzuschlag(ui->lineMargin->text().toDouble());
     controller -> setMwSt(ui-> lineTaxRate->text().toDouble());
     controller -> setAnzahlWerkstuecke(ui-> lineNumberOfPieces->text().toDouble());
-    double result = controller->calculateTotal();
 
-    // give out result
+    double result = controller->calculateTotal();
+        // give out result
     ui ->lineDisplay-> setText("Gesamt Preis: " + Utillity::formNum(result) + " €");
 }
 
