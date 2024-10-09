@@ -2,8 +2,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QString>
-#include <stdexcept>
+
 
 using namespace std;
 
@@ -34,6 +33,29 @@ MainWindow::~MainWindow()
     delete ui;
     delete controller;
 }
+
+// error logging method that writes a logg file
+void MainWindow::logError(const QString & message){
+    // write logg msg to file
+    QFile file("application.log");
+    if (file.open(QIODevice::Append | QIODevice::Text)){
+        QTextStream out(&file);
+        out << QDateTime::currentDateTime().toString("yyy-MM-dd hh:mm:ss") << ": " << message << "/n";
+        file.close();
+    }
+}
+// opimice code here !!
+// method for input processing
+void MainWindow::setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message){
+
+    bool ok;
+    double value = lineEdit->text().toDouble(&ok);
+    if (!ok){
+        logError("not a number");
+
+    }
+}
+
 
 //price per roll
 void MainWindow::on_setButton_1_clicked()
@@ -229,7 +251,7 @@ void MainWindow::on_pushButton_clicked()
     controller -> setGewichtProRolle(ui->lineWeightPerRoll->text().toDouble());
     controller-> setGewichtWerkstueck(ui->lineWeightPerPiece->text().toDouble());
     controller -> setFaktor(ui->lineFactor->text().toDouble());
-     controller -> setGewinnzuschlag(ui->lineMargin->text().toDouble());
+    controller -> setGewinnzuschlag(ui->lineMargin->text().toDouble());
     controller -> setMwSt(ui-> lineTaxRate->text().toDouble());
     controller -> setAnzahlWerkstuecke(ui-> lineNumberOfPieces->text().toDouble());
 

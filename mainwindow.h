@@ -3,9 +3,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "controller.h"
 #include "datamodel.h"
+#include <QString>
+#include <QMainWindow>
+#include <QFile>
+#include <QDateTime>
+//#include <stdexcept>
+#include<QInputDialog>
 
 using namespace std;
 using namespace Qt;
@@ -26,6 +31,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     // destructor
     ~MainWindow();
+
+// error logging method that writes a logg file
+    void logError(const QString & message);
+
+// method for input processing
+    void setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message){
+
+    }
 
 
 private slots:
