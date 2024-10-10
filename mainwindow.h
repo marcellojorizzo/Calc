@@ -36,9 +36,7 @@ public:
     void logError(const QString & message);
 
 // method for input processing
-    void setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message){
-
-    }
+    void setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message);
 
 
 private slots:

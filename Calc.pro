@@ -18,7 +18,7 @@ HEADERS += \
     controller.h \
     datamodel.h \
     mainwindow.h \
-    utillity.h
+    utility.h
 
 FORMS += \
     mainwindow.ui

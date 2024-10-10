@@ -1,10 +1,14 @@
 // utillity.h
 
-#ifndef UTILLITY_H
-#define UTILLITY_H
+// using both is redundant but safer
+#pragma once
+
+#ifndef UTILITY_H
+#define UTILITY_H
+
 #include <QString>
 
-class Utillity
+class Utility
 {
 public:
 
@@ -18,4 +22,4 @@ public:
     }
 };
 
-#endif // UTILLITY_H
+#endif // UTILITY_H
