@@ -1,13 +1,20 @@
 // controller.h
+
+// using both is redundant but safer
+#pragma once
+
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <QMainWindow>
 #include "datamodel.h"
+#include <QMainWindow>
+
+// no need for parameter names in the deklaration
+// only in the implementation parameter names need to be given, so the method can accsess the
+// parameters correctly
 
 class Controller
 {
-
 
 public:
 

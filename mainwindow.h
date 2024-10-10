@@ -1,15 +1,21 @@
 //mainwindow.h
 
+// using both is redundant but safer
+#pragma once
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+// order of include
+// 1st Header Files that belong to this C/C++ File
+// 2nd Header Files of other compnents like Classes
+// 3rd System Header Files
 #include "controller.h"
 #include "datamodel.h"
 #include <QString>
 #include <QMainWindow>
 #include <QFile>
 #include <QDateTime>
-//#include <stdexcept>
 #include<QInputDialog>
 
 using namespace std;

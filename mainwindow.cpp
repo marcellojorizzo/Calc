@@ -3,7 +3,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -19,13 +18,13 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
 
 // set default values
-    ui -> linePricePerRoll->setText(Utillity::formNum(model.getPreisProRolle()));
-    ui -> lineWeightPerRoll-> setText(Utillity::formNum(model.getGewichtProRolle()));
-    ui -> lineWeightPerPiece -> setText(Utillity::formNum(model.getGewichtProWerkstueck()));
-    ui -> lineFactor -> setText(Utillity::formNum(model.getFaktor()));
-    ui -> lineMargin ->setText(Utillity::formNum(model.getGewinnzuschlag()));
-    ui -> lineTaxRate ->setText(Utillity::formNum(model.getMwSt()));
-    ui -> lineNumberOfPieces ->setText(Utillity::formNum(model.getAnzahlWerkstuecke()));
+    ui -> linePricePerRoll->setText(Utility::formNum(model.getPreisProRolle()));
+    ui -> lineWeightPerRoll-> setText(Utility::formNum(model.getGewichtProRolle()));
+    ui -> lineWeightPerPiece -> setText(Utility::formNum(model.getGewichtProWerkstueck()));
+    ui -> lineFactor -> setText(Utility::formNum(model.getFaktor()));
+    ui -> lineMargin ->setText(Utility::formNum(model.getGewinnzuschlag()));
+    ui -> lineTaxRate ->setText(Utility::formNum(model.getMwSt()));
+    ui -> lineNumberOfPieces ->setText(Utility::formNum(model.getAnzahlWerkstuecke()));
 }
 
 MainWindow::~MainWindow()
@@ -71,7 +70,7 @@ void MainWindow::on_setButton_1_clicked()
 
        controller->setPreisProRolle(value);
         double result= controller -> getPreisProRolle();
-       ui ->lineDisplay-> setText("Preis pro Filament-Rolle: " + Utillity::formNum(result)+ " €");
+       ui ->lineDisplay-> setText("Preis pro Filament-Rolle: " + Utility::formNum(result)+ " €");
     }
     catch(const invalid_argument &e)
     {
@@ -98,7 +97,7 @@ void MainWindow::on_setButton_2_clicked()
 
         controller->setGewichtProRolle(value);
         double result= controller -> getGewichtProRolle();
-        ui ->lineDisplay-> setText("Gewicht pro Filament-Rolle: " + Utillity::formNum(result)+ " €");
+        ui ->lineDisplay-> setText("Gewicht pro Filament-Rolle: " + Utility::formNum(result)+ " €");
     }
     catch(const invalid_argument &e)
     {
@@ -124,7 +123,7 @@ void MainWindow::on_setButton_3_clicked()
         }
     controller-> setGewichtWerkstueck(value);
     double result= controller -> getGewichtProWerkstueck();
-    ui ->lineDisplay-> setText("Gewicht pro Werkstück: " + Utillity::formNum(result)+ " g");
+    ui ->lineDisplay-> setText("Gewicht pro Werkstück: " + Utility::formNum(result)+ " g");
     }
     catch (const invalid_argument &e)
     {
@@ -150,7 +149,7 @@ void MainWindow::on_setButton_4_clicked()
         }
     controller -> setFaktor(value);
     double result= controller -> getFaktor();
-    ui ->lineDisplay-> setText("Der Faktor wurde auf: " + Utillity::formNum(result)+ " gesetzt!");
+    ui ->lineDisplay-> setText("Der Faktor wurde auf: " + Utility::formNum(result)+ " gesetzt!");
     }
     catch (const invalid_argument &e)
     {
@@ -177,7 +176,7 @@ void MainWindow::on_setButton_5_clicked()
         }
         controller -> setGewinnzuschlag(value);
         double result = controller ->getGewinnzuschlag();
-          ui ->lineDisplay-> setText("Der Gewinnzuschlag beträgt: " + Utillity::formNum(result)+ " %");
+          ui ->lineDisplay-> setText("Der Gewinnzuschlag beträgt: " + Utility::formNum(result)+ " %");
     }
     catch (const invalid_argument &e)
     {
@@ -204,7 +203,7 @@ void MainWindow::on_setButton_6_clicked()
         }
         controller -> setMwSt(value);
         double result= controller -> getMwSt();
-        ui ->lineDisplay-> setText("Der MwSt-Satz beträgt: " + Utillity::formNum(result)+ " %");
+        ui ->lineDisplay-> setText("Der MwSt-Satz beträgt: " + Utility::formNum(result)+ " %");
     }
     catch (const invalid_argument &e)
     {
@@ -230,7 +229,7 @@ void MainWindow::on_setButton_7_clicked()
         }
         controller -> setAnzahlWerkstuecke(value);
         double result= controller -> getAnzahlWerkstuecke();
-        ui ->lineDisplay-> setText("Es werden die Kosten für: " + Utillity::formNum(result)+ " Werkstücke berechnet");
+        ui ->lineDisplay-> setText("Es werden die Kosten für: " + Utility::formNum(result)+ " Werkstücke berechnet");
     }
     catch (const invalid_argument &e)
     {
@@ -257,15 +256,15 @@ void MainWindow::on_pushButton_clicked()
 
     double result = controller->calculateTotal();
     // give out result
-    ui ->lineDisplay-> setText("Gesamt Preis: " + Utillity::formNum(result) + " €");
+    ui ->lineDisplay-> setText("Gesamt Preis: " + Utility::formNum(result) + " €");
 
     // set values in felds
-    ui -> linePricePerRoll->setText(Utillity::formNum(model.getPreisProRolle()));
-    ui -> lineWeightPerRoll-> setText(Utillity::formNum(model.getGewichtProRolle()));
-    ui -> lineWeightPerPiece -> setText(Utillity::formNum(model.getGewichtProWerkstueck()));
-    ui -> lineFactor -> setText(Utillity::formNum(model.getFaktor()));
-    ui -> lineMargin ->setText(Utillity::formNum(model.getGewinnzuschlag()));
-    ui -> lineTaxRate ->setText(Utillity::formNum(model.getMwSt()));
-    ui -> lineNumberOfPieces ->setText(Utillity::formNum(model.getAnzahlWerkstuecke()));
+    ui -> linePricePerRoll->setText(Utility::formNum(model.getPreisProRolle()));
+    ui -> lineWeightPerRoll-> setText(Utility::formNum(model.getGewichtProRolle()));
+    ui -> lineWeightPerPiece -> setText(Utility::formNum(model.getGewichtProWerkstueck()));
+    ui -> lineFactor -> setText(Utility::formNum(model.getFaktor()));
+    ui -> lineMargin ->setText(Utility::formNum(model.getGewinnzuschlag()));
+    ui -> lineTaxRate ->setText(Utility::formNum(model.getMwSt()));
+    ui -> lineNumberOfPieces ->setText(Utility::formNum(model.getAnzahlWerkstuecke()));
 }
 

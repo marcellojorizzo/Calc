@@ -1,13 +1,16 @@
 //datamodel.h
+
+// using both is redundant but safer
+#pragma once
+
 #ifndef DATAMODEL_H
 #define DATAMODEL_H
 
+#include "utility.h"
 #include <QDebug>
-#include "utillity.h"
 
 using namespace std;
 using namespace Qt;
-
 
 class DataModel
 {
