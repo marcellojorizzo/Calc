@@ -3,6 +3,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
+// include
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -11,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     // initalize controller
     , controller(new Controller(&model,this ))
+    , errorhandler (new ErrorHandler)
 {
     ui->setupUi(this);
 
@@ -31,40 +35,29 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete controller;
+    delete errorhandler;
 }
 
-// error logging method that writes a logg file
-void MainWindow::logError(const QString & message){
-    // write logg msg to file
-    QFile file("application.log");
-    if (file.open(QIODevice::Append | QIODevice::Text)){
-        QTextStream out(&file);
-        out << QDateTime::currentDateTime().toString("yyy-MM-dd hh:mm:ss") << ": " << message << "/n";
-        file.close();
-    }
-}
-// opimice code here !!
-// method for input processing
-void MainWindow::setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message){
 
-    bool ok;
-    double value = lineEdit->text().toDouble(&ok);
-    if (!ok){
-        logError("not a number");
 
-    }
-}
 
 
 //price per roll
 void MainWindow::on_setButton_1_clicked()
 {
+    // void Utility::setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message
+
+// hier weitermachen & #include function nutzen!!
+   // errorhandler->processInput(ui-> linePricePerRoll, void (controller->setPreisProRolle(ui-> linePricePerRoll ->text().toDouble())), controller -> getPreisProRolle(), "Test Drive" );
+
+
     try
     {
         bool ok;
         double value = ui-> linePricePerRoll ->text().toDouble(&ok);
         if (!ok)
         {
+
         throw invalid_argument("not a number!");
         }
 
@@ -74,6 +67,7 @@ void MainWindow::on_setButton_1_clicked()
     }
     catch(const invalid_argument &e)
     {
+        errorhandler->logError(e.what());
     ui ->lineDisplay-> setText(e.what());
     ui -> linePricePerRoll ->clear();
     }

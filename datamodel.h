@@ -23,7 +23,7 @@ public:
 
 // getter and setter
 
- // getter
+// getter
     double getPreisProRolle() const;
     double getGewichtProRolle() const;
     double getGewichtProWerkstueck() const;

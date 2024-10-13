@@ -10,13 +10,15 @@
 // 1st Header Files that belong to this C/C++ File
 // 2nd Header Files of other compnents like Classes
 // 3rd System Header Files
+
 #include "controller.h"
 #include "datamodel.h"
+//#include "utility.h"
+#include "errorhandler.h"
+
 #include <QString>
 #include <QMainWindow>
-#include <QFile>
-#include <QDateTime>
-#include<QInputDialog>
+
 
 using namespace std;
 using namespace Qt;
@@ -38,11 +40,9 @@ public:
     // destructor
     ~MainWindow();
 
-// error logging method that writes a logg file
-    void logError(const QString & message);
 
 // method for input processing
-    void setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message);
+ //   void setValue(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message);
 
 
 private slots:
@@ -61,5 +61,8 @@ private:
     DataModel model;
     // create a pointer to the controller
     Controller * controller;
+
+    // create a pointer to the errorhandler
+    ErrorHandler * errorhandler;
 };
 #endif // MAINWINDOW_H

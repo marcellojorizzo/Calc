@@ -16,7 +16,6 @@ Controller::Controller(DataModel * model, QMainWindow * view): model(model), vie
     //connect(view->linePricePerRoll, &MainWindow::on_setButton_1_clicked, this, Controller::setPreisProRolleSlot);
 }
 
-
 // destructor
 Controller::~Controller(){}
 

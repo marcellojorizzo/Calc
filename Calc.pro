@@ -11,12 +11,14 @@ CONFIG += c++17
 SOURCES += \
     controller.cpp \
     datamodel.cpp \
+    errorhandler.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     controller.h \
     datamodel.h \
+    errorhandler.h \
     mainwindow.h \
     utility.h
 

@@ -33,9 +33,7 @@ double DataModel::getAnzahlWerkstuecke() const{
     return anzahlWerkstuecke;
 }
 
-
 //setter
-
 void DataModel::setPreisProRolle(double preis){
 
     preisProRolle =preis;
@@ -62,7 +60,6 @@ void DataModel::setAnzahlWerkstuecke(double anzahl){
 }
 
 //  method to calculate
-
 double DataModel::calculateTotal()const{
 
     double price = (getPreisProRolle() / getGewichtProRolle());
