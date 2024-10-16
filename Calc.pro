@@ -13,7 +13,8 @@ SOURCES += \
     datamodel.cpp \
     errorhandler.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    utility.cpp
 
 HEADERS += \
     controller.h \

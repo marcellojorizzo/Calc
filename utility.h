@@ -22,6 +22,40 @@ public:
     // destructor
     ~Utility();
 
+    // method to use inner class
+    void usingInnerClass();
+
+
+    // inner class
+
+    class LocalClass{
+
+    public:
+        // constructor (inner class)
+        LocalClass();
+
+        // destructor
+        ~LocalClass();
+
+// getter & setter
+
+        //getter
+        int getInnerNum();
+
+        //setter
+        void setInnerNum(int);
+
+        //method
+        void test();
+
+        private:
+
+        int innerNum;
+    };
+
+
+    // instance of inner class
+    LocalClass Local;
 
 // Template function for formating a numeric  value
     template<typename T>
