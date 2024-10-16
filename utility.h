@@ -6,8 +6,12 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include <QString>
+// Order of includes
+// 1. Header files that belong to this C/C++ file
+// 2. Header files of other components like classes
+// 3. System header files
 
+#include <QString>
 
 // using namespace std;
 // using namespace Qt;
@@ -40,7 +44,7 @@ public:
 // getter & setter
 
         //getter
-        int getInnerNum();
+        int getInnerNum() const;
 
         //setter
         void setInnerNum(int);
@@ -55,7 +59,7 @@ public:
 
 
     // instance of inner class
-    LocalClass Local;
+    LocalClass local;
 
 // Template function for formating a numeric  value
     template<typename T>

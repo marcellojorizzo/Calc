@@ -10,16 +10,16 @@
 #include "controller.h"
 
 
-
 #include <QlineEdit>
 #include <functional> // get to know <-!
 #include <QDateTime>
 #include <QInputDialog>
 #include <QDebug>
 
-// nicht notwendig !?
-// #include <QFile>
-//#include <QMainWindow>
+#include <QMainWindow>
+#include <QFile>       // QFile needed for  QIODevice
+#include <QTextStream>  // used with QTextStream
+#include <QIODevice>   // direct include
 
 
 using namespace std;
@@ -37,8 +37,8 @@ public:
 
 // try out this code
 
-    void setValueAndDisplay(QLineEdit* lineEdit, std::function<void(double)> setFunction,
-                                          std::function<double()> getFunction, const QString& displayMessage);
+   // void setValueAndDisplay(QLineEdit* lineEdit, std::function<void(double)> setFunction,
+   //                                      std::function<double()> getFunction, const QString& displayMessage);
 
     // error logging method that writes a logg file
    void logError(const QString & message);
