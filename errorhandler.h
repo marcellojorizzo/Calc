@@ -10,6 +10,7 @@
 #include "controller.h"
 
 
+
 #include <QlineEdit>
 #include <functional> // get to know <-!
 #include <QDateTime>
@@ -35,17 +36,18 @@ public:
     // destructor
     ~ErrorHandler();
 
-// try out this code
-
-   // void setValueAndDisplay(QLineEdit* lineEdit, std::function<void(double)> setFunction,
-   //                                      std::function<double()> getFunction, const QString& displayMessage);
-
-    // error logging method that writes a logg file
+// error logging method that writes a logg file
    void logError(const QString & message);
 
+// method for input processing
+   void processInput(QLineEdit* lineEdit,
+                     QLineEdit* lineDisplay,
+                     Controller* controller,
+                     void (Controller::*setMethod)(double),
+                     double (Controller::*getMethod)() const,
+                     const QString &message,
+                     const QString &unit);
 
-    // method for input processing
-   void processInput(QLineEdit *lineEdit, void (Controller::*setMethod)(double), double(Controller::*getMethod)() const, const QString &message);
 
 private:
 
